@@ -7,6 +7,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Esto permitirá que la app se abra correctamente
+        // El motor de audio Sonic Master cargará aquí
     }
 }
