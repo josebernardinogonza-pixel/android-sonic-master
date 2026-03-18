@@ -1,0 +1,2 @@
+@rem Script simplificado
+gradle %*
