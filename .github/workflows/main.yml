@@ -5,29 +5,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del código
+      - name: Checkout código
         uses: actions/checkout@v4
 
-      - name: Configurar JDK 17
+      - name: Configurar Java 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Configurar Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 8.1
-
-      - name: Dar permisos de ejecución
-        run: chmod +x gradlew
-        continue-on-error: true
-
-      - name: Construir APK
-        run: gradle :app:assembleDebug
-
-      - name: Subir APK generado
+      - name: Construir con Gradle directamente
+        run: |
+          chmod +x gradlew || true
+          ./gradlew assembleDebug --stacktrace
+          
+      - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
           name: Sonic-Master-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/debug/*.apk
